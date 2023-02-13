@@ -284,7 +284,7 @@ FROM KAFKA
 
 如果需要提高导入性能，避免出现消费积压等情况，则可以通过设置单个 Routine Load 导入作业的期望任务并发度`desired_concurrent_number`，增加实际任务并行度，将一个导入作业拆分成尽可能多的导入任务并行执行。
 
-> 更多提升导入性能的方式，请参见 [Routine Load常见问题]
+> 更多提升导入性能的方式，请参见 [Routine Load常见问题](../../../faq/loading/Routine_load_faq.md)
 
 请注意，实际任务并行度由如下多个参数组成的公式决定，上限为 BE 节点的数量或者消费分区的数量。
 
