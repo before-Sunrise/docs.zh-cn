@@ -2,19 +2,19 @@
 
 ## 功能
 
-计算百分位数。和percentile_cont不同的是，该函数如果未找到与百分位完全匹配的值，则默认返回临近两个值中较大的值。
+计算百分位数。和 percentile_cont 不同的是，该函数如果未找到与百分位完全匹配的值，则默认返回临近两个值中较大的值。
 
 该函数从 2.5 版本开始支持。
 
 ## 语法
 
 ```SQL
-PERCENTILE_CONT (expr, percentile) 
+PERCENTILE_DISC (expr, percentile) 
 ```
 
 ## 参数说明
 
-- `expr`: 要计算百分位数的列，列值支持任意可排序的类型。如果要计算物理（physics）得分的中位数，则`expr`设置为包含physics分数的列。
+- `expr`: 要计算百分位数的列，列值支持任意可排序的类型。
 
 - `percentile`: 指定的百分位，介于 0 和 1 之间的浮点常量。如果要计算中位数，则设置为 0.5。
 
@@ -30,7 +30,7 @@ PERCENTILE_CONT (expr, percentile)
 
 ## 示例
 
-假设有表`exam`，数据如下。
+假设有表 `exam`，数据如下。
 
 ```Plain
 select * from exam order by Subject;
@@ -55,7 +55,8 @@ select * from exam order by Subject;
 查询语句：
 
 ```SQL
-SELECT Subject, PERCENTILE_DISC (Score, 0.5)  FROM exam group by Subject;
+SELECT Subject, PERCENTILE_DISC (Score, 0.5)
+FROM exam group by Subject;
 ```
 
 返回结果：
@@ -64,7 +65,7 @@ SELECT Subject, PERCENTILE_DISC (Score, 0.5)  FROM exam group by Subject;
 +-----------+-----------------------------+
 | Subject   | percentile_disc(Score, 0.5) |
 +-----------+-----------------------------+
-| chemistry |                          90 |
+| chemistry |                         100 |
 | math      |                          70 |
 | physics   |                          85 |
 +-----------+-----------------------------+
