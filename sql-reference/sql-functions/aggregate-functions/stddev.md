@@ -1,5 +1,5 @@
 
-# stddev, stddev_pop
+# stddev, stddev_pop, std
 
 ## 功能
 
@@ -17,7 +17,7 @@ STDDEV(expr)
 
 ## 返回值说明
 
-返回值为数值类型。
+返回值为double类型。
 
 ## 示例
 

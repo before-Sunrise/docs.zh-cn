@@ -16,10 +16,7 @@ VARIANCE(expr)
 
 ## 返回值说明
 
-返回值为数值类型。
-
-- 如果 `expr` 是 Decimal 类型，那么返回 Decimal 类型的值。
-- 否则返回 Double 类型的值。
+返回值为double类型。
 
 ## 示例
 
