@@ -8,10 +8,11 @@
 
 当前 StarRocks 支持的窗口函数包括：
 
-* `MIN()`, `MAX()`, `COUNT()`, `SUM()`, `AVG()`
-* `FIRST_VALUE()`, `LAST_VALUE()`, `LEAD()`, `LAG()`
-* `ROW_NUMBER()`, `RANK()`, `DENSE_RANK()`, `QUALIFY()`
-* `NTILE()`
+* MIN(), MAX(), COUNT(), SUM(), AVG()
+* FIRST_VALUE(), LAST_VALUE(), LEAD(), LAG()
+* ROW_NUMBER(), RANK(), DENSE_RANK(), QUALIFY()
+* NTILE()
+* VARIANCE(), VAR_SAMP(), STD(), STDDEV_SAMP(), COVAR_SAMP(), COVAR_POP(), CORR()
 
 ## 窗口函数语法及参数
 
@@ -961,7 +962,7 @@ mysql> select variance(k) over (partition by no) FROM agg;
 +-------------------------------------+
 ```
 
-# 使用VAR_SAMP, VARIANCE_SAMP 窗口函数
+# 使用 VAR_SAMP, VARIANCE_SAMP 窗口函数
 
 VAR_SAMP() 窗口函数用于统计表达式的样本方差。
 
@@ -1130,7 +1131,7 @@ mysql> select * from agg;
 +------+-------+-------+
 ```
 
-**使用:**
+使用 COVAR_SAMP() 窗口函数。
 
 ```plaintext
 mysql> select COVAR_SAMP(k, v) over (partition by no) FROM agg;
