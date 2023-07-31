@@ -917,7 +917,7 @@ from int_t where property in ('odd','even');
 
 ## 使用 VARIANCE, VAR_POP, VARIANCE_POP 窗口函数
 
-VARIANCE()窗口函数用于统计表达式的总体方差。VAR_POP和VARIANCE_POP是VARIANCE窗口函数的别名。
+VARIANCE() 窗口函数用于统计表达式的总体方差。VAR_POP 和 VARIANCE_POP 是 VARIANCE 窗口函数的别名。
 
 **语法：**
 
@@ -926,13 +926,14 @@ VARIANCE(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> `VARIANCE()` 函数只支持partition by，不支持order by和window子句。
+> 
+> `VARIANCE()` 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **示例：**
 
-对于表agg：
+假设表 `agg` 有以下数据：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
@@ -945,9 +946,9 @@ mysql> select * from agg;
 +------+-------+-------+
 ```
 
-**使用:**
+使用 VARIANCE() 窗口函数。
 
-```
+```plaintext
 mysql> select variance(k) over (partition by no) FROM agg;
 +-------------------------------------+
 | variance(k) OVER (PARTITION BY no ) |
@@ -960,11 +961,9 @@ mysql> select variance(k) over (partition by no) FROM agg;
 +-------------------------------------+
 ```
 
-
-
 # 使用VAR_SAMP, VARIANCE_SAMP 窗口函数
 
-VAR_SAMP()窗口函数用于统计表达式的样本方差
+VAR_SAMP() 窗口函数用于统计表达式的样本方差。
 
 **语法：**
 
@@ -973,13 +972,14 @@ VAR_SAMP(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> `VAR_SAMP()` 函数只支持partition by，不支持order by和window子句。
+> 
+> VAR_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **示例：**
 
-对于表agg：
+假设表 `agg` 有以下数据：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
@@ -992,9 +992,9 @@ mysql> select * from agg;
 +------+-------+-------+
 ```
 
-**使用:**
+使用 VAR_SAMP() 窗口函数。
 
-```
+```plaintext
 mysql> select VAR_SAMP(k) over (partition by no) FROM agg;
 +-------------------------------------+
 | var_samp(k) OVER (PARTITION BY no ) |
@@ -1007,11 +1007,9 @@ mysql> select VAR_SAMP(k) over (partition by no) FROM agg;
 +-------------------------------------+
 ```
 
+# 使用 STD, STDDEV, STDDEV_POP 窗口函数
 
-
-# 使用STD, STDDEV, STDDEV_POP 窗口函数
-
-STD()窗口函数用于统计表达式的总体标准差
+STD() 窗口函数用于统计表达式的总体标准差。
 
 **语法：**
 
@@ -1020,13 +1018,14 @@ STD(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> `STD()` 函数只支持partition by，不支持order by和window子句。
+> 
+> STD() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **示例：**
 
-对于表agg：
+假设表 `agg` 有以下数据：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
@@ -1039,9 +1038,9 @@ mysql> select * from agg;
 +------+-------+-------+
 ```
 
-**使用:**
+使用 STD() 窗口函数。
 
-```
+```plaintext
 mysql> select STD(k) over (partition by no) FROM agg;
 +--------------------------------+
 | std(k) OVER (PARTITION BY no ) |
@@ -1054,11 +1053,9 @@ mysql> select STD(k) over (partition by no) FROM agg;
 +--------------------------------+
 ```
 
+# 使用 STDDEV_SAMP 窗口函数
 
-
-# 使用STDDEV_SAMP 窗口函数
-
-STDDEV_SAMP()窗口函数用于统计表达式的总体标准差
+STDDEV_SAMP() 窗口函数用于统计表达式的样本标准差。
 
 **语法：**
 
@@ -1067,13 +1064,14 @@ STDDEV_SAMP(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> `STDDEV_SAMP()` 函数只支持partition by，不支持order by和window子句。
+> 
+> STDDEV_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **示例：**
 
-对于表agg：
+假设表 `agg` 有以下数据：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
@@ -1086,9 +1084,9 @@ mysql> select * from agg;
 +------+-------+-------+
 ```
 
-**使用:**
+使用 STDDEV_SAMP() 窗口函数。
 
-```
+```plaintext
 mysql> select STDDEV_SAMP(k) over (partition by no) FROM agg;
 +----------------------------------------+
 | stddev_samp(k) OVER (PARTITION BY no ) |
@@ -1101,26 +1099,25 @@ mysql> select STDDEV_SAMP(k) over (partition by no) FROM agg;
 +----------------------------------------+
 ```
 
+## 使用 COVAR_SAMP 窗口函数
 
-
-## 使用COVAR_SAMP 窗口函数
-
-STDDEV_SAMP()窗口函数用于统计表达式的总体标准差
+COVAR_SAMP() 窗口函数用于统计表达式的样本协方差。
 
 **语法：**
 
 ```sql
-STDDEV_SAMP(expression) [OVER (partition_by_clause)]
+COVAR_SAMP(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> `STDDEV_SAMP()` 函数只支持partition by，不支持order by和window子句。
+> 
+> COVAR_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **示例：**
 
-对于表agg：
+假设表 `agg` 有以下数据：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
@@ -1135,7 +1132,7 @@ mysql> select * from agg;
 
 **使用:**
 
-```
+```plaintext
 mysql> select COVAR_SAMP(k, v) over (partition by no) FROM agg;
 +------------------------------------------+
 | covar_samp(k, v) OVER (PARTITION BY no ) |
@@ -1148,11 +1145,9 @@ mysql> select COVAR_SAMP(k, v) over (partition by no) FROM agg;
 +------------------------------------------+
 ```
 
+## 使用 COVAR_POP 窗口函数
 
-
-## 使用COVAR_POP窗口函数
-
-COVAR_POP()窗口函数用于统计表达式的总体协方差
+COVAR_POP() 窗口函数用于统计表达式的总体协方差。
 
 **语法：**
 
@@ -1161,13 +1156,14 @@ COVAR_POP(expression, expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> `COVAR_POP()` 函数只支持partition by，不支持order by和window子句。
+> 
+> COVAR_POP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **示例：**
 
-对于表agg：
+假设表 `agg` 有以下数据：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
@@ -1180,9 +1176,9 @@ mysql> select * from agg;
 +------+-------+-------+
 ```
 
-**使用:**
+使用 COVAR_POP() 窗口函数。
 
-```
+```plaintext
 mysql> select COVAR_POP(k, v) over (partition by no) FROM agg;
 +-----------------------------------------+
 | covar_pop(k, v) OVER (PARTITION BY no ) |
@@ -1195,11 +1191,9 @@ mysql> select COVAR_POP(k, v) over (partition by no) FROM agg;
 +-----------------------------------------+
 ```
 
+## 使用 CORR 窗口函数
 
-
-## 使用CORR窗口函数
-
-CORR()窗口函数用于统计表达式的相关系数
+CORR() 窗口函数用于统计表达式的相关系数。
 
 **语法：**
 
@@ -1208,13 +1202,14 @@ CORR(expression, expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> `CORR()` 函数只支持partition by，不支持order by和window子句。
+> 
+> CORR() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **示例：**
 
-对于表agg：
+假设表 `agg` 有以下数据：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
@@ -1227,9 +1222,9 @@ mysql> select * from agg;
 +------+-------+-------+
 ```
 
-**使用:**
+使用 CORR() 窗口函数。
 
-```
+```plaintext
 mysql> select CORR(k, v) over (partition by no) FROM agg;
 +------------------------------------+
 | corr(k, v) OVER (PARTITION BY no ) |
@@ -1241,4 +1236,3 @@ mysql> select CORR(k, v) over (partition by no) FROM agg;
 |                 0.9988445981121532 |
 +------------------------------------+
 ```
-
