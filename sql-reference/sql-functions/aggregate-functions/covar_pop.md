@@ -16,6 +16,8 @@ COVAR_POP(expr1, expr2)
 
 `expr2`: 选取的表达式2
 
+当表达式为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+
 ## 返回值说明
 
 返回值为Double类型，其中n为该表的行数。计算公式如下:

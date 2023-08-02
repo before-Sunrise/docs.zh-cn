@@ -10,6 +10,8 @@
 STD(expr)
 ```
 
+当表达式为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+
 ## 返回值说明
 
 使用 DOUBLE 数据类型返回列的标准差。

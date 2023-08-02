@@ -15,6 +15,8 @@ VAR_SAMP(expr)
 
 `epxr`: 被选取的表达式。
 
+当表达式为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+
 ## 返回值说明
 
 返回值为double类型。

@@ -930,6 +930,10 @@ VARIANCE(expression) [OVER (partition_by_clause)]
 > 
 > `VARIANCE()` 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
+**参数说明：**
+
+当表达式expression为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+
 **示例：**
 
 假设表 `agg` 有以下数据：
@@ -975,6 +979,10 @@ VAR_SAMP(expression) [OVER (partition_by_clause)]
 > 注意
 > 
 > VAR_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
+
+**参数说明：**
+
+当表达式expression为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
 
 **示例：**
 
@@ -1022,6 +1030,10 @@ STD(expression) [OVER (partition_by_clause)]
 > 
 > STD() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
+**参数说明：**
+
+当表达式expression为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+
 **示例：**
 
 假设表 `agg` 有以下数据：
@@ -1067,6 +1079,10 @@ STDDEV_SAMP(expression) [OVER (partition_by_clause)]
 > 注意
 > 
 > STDDEV_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
+
+**参数说明：**
+
+当表达式expression为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
 
 **示例：**
 
@@ -1114,6 +1130,10 @@ COVAR_SAMP(expression) [OVER (partition_by_clause)]
 > 
 > COVAR_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
+**参数说明：**
+
+当表达式expression为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+
 **示例：**
 
 假设表 `agg` 有以下数据：
@@ -1160,6 +1180,10 @@ COVAR_POP(expression, expression) [OVER (partition_by_clause)]
 > 
 > COVAR_POP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
+**参数说明：**
+
+当表达式expression为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+
 **示例：**
 
 假设表 `agg` 有以下数据：
@@ -1205,6 +1229,10 @@ CORR(expression, expression) [OVER (partition_by_clause)]
 > 注意
 > 
 > CORR() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
+
+**参数说明：**
+
+当表达式expression为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
 
 **示例：**
 
