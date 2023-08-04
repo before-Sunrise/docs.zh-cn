@@ -922,9 +922,9 @@ VARIANCE() 窗口函数用于统计表达式的总体方差。VAR_POP 和 VARIAN
 
 **语法：**
 
-```sql
+~~~SQL
 VARIANCE(expression) [OVER (partition_by_clause)]
-```
+~~~
 
 > 注意
 > 
