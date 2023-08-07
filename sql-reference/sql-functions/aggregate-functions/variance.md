@@ -2,7 +2,7 @@
 
 ## 功能
 
-返回表达式的方差。
+返回表达式的总体方差。
 
 ## 语法
 
@@ -12,17 +12,15 @@ VARIANCE(expr)
 
 ## 参数说明
 
-`expr`: 选取的表达式。
-
-当表达式为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+`expr`: 选取的表达式。当表达式为表中一列时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL。
 
 ## 返回值说明
 
-返回值为double类型。
+返回值为 DOUBLE 类型。
 
 ## 示例
 
-```plain text
+```plaintext
 select var_pop(i_current_price), i_rec_start_date from item group by i_rec_start_date;
 +--------------------------+------------------+
 | var_pop(i_current_price) | i_rec_start_date |
