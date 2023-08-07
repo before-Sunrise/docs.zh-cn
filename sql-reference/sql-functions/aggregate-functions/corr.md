@@ -21,10 +21,10 @@ CORR(expr1, expr2)
 ## 返回值说明
 
 返回值为 DOUBLE 类型。计算公式如下，其中 `n` 为该表的行数：
+
 $$
 \frac{\sum_{i=1}^{n}((x_i - \bar{x})(y_i - \bar{y}))}{\sqrt{\sum_{i=1}^{n}((x_i - \bar{x})^2) \cdot \sum_{i=1}^{n}((y_i - \bar{y})^2)}}
 $$
-
 
 ## 使用说明
 
@@ -60,4 +60,3 @@ mysql> select no,CORR(k,v) from agg group by no;
 |    2 | 0.9988445981121532 |
 +------+--------------------+
 ```
-
