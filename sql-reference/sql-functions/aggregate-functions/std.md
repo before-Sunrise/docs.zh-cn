@@ -2,7 +2,7 @@
 
 ## 功能
 
-返回指定列的标准差。
+返回 `expr` 表达式的标准差。
 
 ## 语法
 
@@ -10,17 +10,19 @@
 STD(expr)
 ```
 
-当表达式为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+## 参数说明
+
+`expr`: 选取的表达式。当表达式为表中一列时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL。
 
 ## 返回值说明
 
-使用 DOUBLE 数据类型返回列的标准差。
+返回 DOUBLE 类型的值。
 
 ## 示例
 
 示例数据集：
 
-```plain
+```plaintext
 MySQL [test]> select * from std_test;
 +------+------+
 | col0 | col1 |
@@ -35,7 +37,7 @@ MySQL [test]> select * from std_test;
 
 计算 `col0` 和 `col1` 的标准差。
 
-```sql
+```plaintext
 MySQL > select std(col0) as std_of_col0, std(col1) as std_of_col1 from std_test;
 +--------------------+--------------------+
 | std_of_col0        | std_of_col1        |
@@ -44,6 +46,6 @@ MySQL > select std(col0) as std_of_col0, std(col1) as std_of_col1 from std_test;
 +--------------------+--------------------+
 ```
 
-## 关键词
+## Keywords
 
 STD
