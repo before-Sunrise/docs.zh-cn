@@ -34,7 +34,7 @@ $$
 
 对于以下数据表：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
