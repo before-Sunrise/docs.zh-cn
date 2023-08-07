@@ -2,7 +2,7 @@
 
 ## 功能
 
-返回两个随机变量的皮尔逊相关系数
+返回两个随机变量的皮尔逊相关系数。该函数从 2.5.10 开始支持，也可用作窗口函数。
 
 ## 语法
 
@@ -12,15 +12,15 @@ CORR(expr1, expr2)
 
 ## 参数说明
 
-`expr1`: 选取的表达式1
+`expr1`: 选取的表达式 1。
 
-`expr2`: 选取的表达式2
+`expr2`: 选取的表达式 2。
 
-当表达式为列值时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL
+当表达式为表中一列时，支持以下数据类型: TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE、DECIMAL。
 
 ## 返回值说明
 
-返回值为Double类型，其中n为该表的行数。计算公式如下:
+返回值为 DOUBLE 类型。计算公式如下，其中 `n` 为该表的行数：
 $$
 \frac{\sum_{i=1}^{n}((x_i - \bar{x})(y_i - \bar{y}))}{\sqrt{\sum_{i=1}^{n}((x_i - \bar{x})^2) \cdot \sum_{i=1}^{n}((y_i - \bar{y})^2)}}
 $$
@@ -28,15 +28,15 @@ $$
 
 ## 使用说明
 
-* 计算相关系数时，只有同一行的两列数据都不为null时，该行数据才会被统计到最终结果中，否则该行数据会被忽略。
+* 计算相关系数时，只有同一行的两列数据都不为 null 时，该行数据才会被统计到最终结果中，否则该行数据会被忽略。
 
-* 当n为1时，返回值为0。
+* 当 `n` 为 1 时，返回值为 0。
 
 ## 示例
 
 对于以下数据表：
 
-```
+```plaintext
 mysql> select * from agg;
 +------+-------+-------+
 | no   | k     | v     |
@@ -49,9 +49,9 @@ mysql> select * from agg;
 +------+-------+-------+
 ```
 
-计算列k和列v的相关系数:
+计算列 `k` 和 列 `v` 的相关系数:
 
-```plain text
+```plaintext
 mysql> select no,CORR(k,v) from agg group by no;
 +------+--------------------+
 | no   | corr(k, v)         |
