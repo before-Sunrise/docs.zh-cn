@@ -927,7 +927,7 @@ VARIANCE(expression) [OVER (partition_by_clause)]
 ~~~
 
 > 注意
-> 
+>
 > `VARIANCE()` 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **参数说明：**
@@ -966,7 +966,7 @@ mysql> select variance(k) over (partition by no) FROM agg;
 +-------------------------------------+
 ```
 
-# 使用 VAR_SAMP, VARIANCE_SAMP 窗口函数
+## 使用 VAR_SAMP, VARIANCE_SAMP 窗口函数
 
 VAR_SAMP() 窗口函数用于统计表达式的样本方差。
 
@@ -977,7 +977,7 @@ VAR_SAMP(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> 
+>
 > VAR_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **参数说明：**
@@ -1016,7 +1016,7 @@ mysql> select VAR_SAMP(k) over (partition by no) FROM agg;
 +-------------------------------------+
 ```
 
-# 使用 STD, STDDEV, STDDEV_POP 窗口函数
+## 使用 STD, STDDEV, STDDEV_POP 窗口函数
 
 STD() 窗口函数用于统计表达式的总体标准差。
 
@@ -1027,7 +1027,7 @@ STD(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> 
+>
 > STD() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **参数说明：**
@@ -1066,7 +1066,7 @@ mysql> select STD(k) over (partition by no) FROM agg;
 +--------------------------------+
 ```
 
-# 使用 STDDEV_SAMP 窗口函数
+## 使用 STDDEV_SAMP 窗口函数
 
 STDDEV_SAMP() 窗口函数用于统计表达式的样本标准差。
 
@@ -1077,7 +1077,7 @@ STDDEV_SAMP(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> 
+>
 > STDDEV_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **参数说明：**
@@ -1127,7 +1127,7 @@ COVAR_SAMP(expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> 
+>
 > COVAR_SAMP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **参数说明：**
@@ -1177,7 +1177,7 @@ COVAR_POP(expression, expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> 
+>
 > COVAR_POP() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **参数说明：**
@@ -1227,7 +1227,7 @@ CORR(expression, expression) [OVER (partition_by_clause)]
 ```
 
 > 注意
-> 
+>
 > CORR() 函数只支持 PARTITION BY，不支持 ORDER BY 和 Window 子句。
 
 **参数说明：**
