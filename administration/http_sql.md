@@ -2,27 +2,29 @@
 
 ## 功能
 
-通过 HTTP 协议使用 StarRocks 的查询功能，当前支持查询 SELECT、SHOW、EXPLAIN、KILL 语句。
+通过 HTTP 协议使用 StarRocks 的查询功能，当前支持 SELECT、SHOW、EXPLAIN、KILL 语句。
 
 使用 curl 命令的一个语法示例：
 
 ```shell
-curl -X POST 'http://<fe_ip>:<fe_http_port>/api/v1/catalogs/<catalog_name>/databases/<database_name>/sql' -u '<username>:<password>'  -d '{"query": "<sql_query>;", "sessionVariables":{"var_name":<var_value>}}'  --header "Content-Type: application/json"
+curl -X POST 'http://<fe_ip>:<fe_http_port>/api/v1/catalogs/<catalog_name>/databases/<database_name>/sql' \
+   -u '<username>:<password>'  -d '{"query": "<sql_query>;", "sessionVariables":{"var_name":<var_value>}}' \
+   --header "Content-Type: application/json"
 ```
 
 ## 请求报文
 
 - 指定 catalog, 跨 database 查询。
 
-```SQL
-POST /api/v1/catalogs/<catalog_name>/sql
-```
+   ```SQL
+   POST /api/v1/catalogs/<catalog_name>/sql
+   ```
 
 - 指定 catalog 和 database 查询。
 
-```SQL
-POST /api/v1/catalogs/<catalog_name>/databases/<database_name>/sql
-```
+   ```SQL
+   POST /api/v1/catalogs/<catalog_name>/databases/<database_name>/sql
+   ```
 
 | Field                    | Description                                                  |
 | ------------------------ | :----------------------------------------------------------- |
@@ -40,10 +42,14 @@ Authorization: Basic <credentials>
 
 ### Request body
 
+```SQL
+-d '{"query": "<sql_query>;", "sessionVariables":{"var_name":<var_value>}}'
+```
+
 | Field                    | Description                                                  |
 | ------------------------ | :----------------------------------------------------------- |
 | query                    | SQL 语句，string 格式。当前支持 SELECT、SHOW、EXPLAIN、KILL 语句。一次 HTTP 请求只允许执行一条 SQL。 |
-| sessionVariables（可选）  | 指定的 session 变量，JSON 格式。可选，默认为空。设置的 session 变量在同一连接中始终有效，连接断开后 session 变量失效。 |
+| sessionVariables         | 指定的 session 变量，JSON 格式。可选，默认为空。设置的 session 变量在同一连接中始终有效，连接断开后 session 变量失效。 |
 
 ## 响应报文
 
@@ -119,13 +125,13 @@ content-type 表示 response body 的格式。这里使用 Newline delimited JSO
 
 想要取消一个耗时过长的查询时，可以直接断开连接。当检测到连接已断开，StarRocks 会自动取消该查询。
 
-* 此外，也可以通过发送 KILL connectionId 的方式取消该查询。
+此外，也可以通过发送 KILL connectionId 的方式取消该查询。
 
 ```shell
 curl -X POST 'http://127.0.0.1:8030/api/v1/catalogs/default_catalog/databases/test/sql' -u 'root:' -d '{"query": "kill 17;"}' --header "Content-Type: application/json"
 ```
 
-connectionId 除了在 Response body 中会返回，也可以通过 SHOW PROCESSLIST 获得：
+`connectionId` 除了在 Response body 中会返回，也可以通过 SHOW PROCESSLIST 获得：
 
 ```shell
 curl -X POST 'http://127.0.0.1:8030/api/v1/catalogs/default_catalog/databases/test/sql' -u 'root:' -d '{"query": "show processlist;"}' --header "Content-Type: application/json"
