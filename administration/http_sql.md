@@ -4,23 +4,35 @@
 
 通过 HTTP 协议使用 StarRocks 的查询功能，当前支持查询 SELECT、SHOW、EXPLAIN、KILL 语句。
 
+使用 curl 命令的一个语法示例：
+
+```shell
+curl -X POST 'http://<fe_ip>:<fe_http_port>/api/v1/catalogs/<catalog_name>/databases/<database_name>/sql' -u '<username>:<password>'  -d '{"query": "<sql_query>;", "sessionVariables":{"var_name":<var_value>}}'  --header "Content-Type: application/json"
+```
+
 ## 请求报文
 
-指定 catalog, 跨 database 查询。SQL 语句中出现的表前面需要加上 database 名。当前仅支持 StarRocks 内表查询。
+- 指定 catalog, 跨 database 查询。
 
 ```SQL
 POST /api/v1/catalogs/<catalog_name>/sql
 ```
 
-指定 catalog 和 database 查询。
+- 指定 catalog 和 database 查询。
 
 ```SQL
 POST /api/v1/catalogs/<catalog_name>/databases/<database_name>/sql
 ```
 
+| Field                    | Description                                                  |
+| ------------------------ | :----------------------------------------------------------- |
+|  catalog_name            | 数据目录名称， 当前仅支持 StarRocks 内表查询，即 `<catalog_name>` 仅支持为 `default_catalog`。|
+|  database_name           | 数据库名称。SQL 语句中出现的表前面需要加上 database 名。 |
+
+
 ### Request header
 
-使用 Authorization 进行 basic 鉴权。
+使用 Basic authentication 进行认证，即 `credentials` 里填写用户名和密码 (`-u '<username>:<password>'`)。注意如果账号没有设置密码，只需要传入 `<username>:`，密码留空。比如如果 root 账号没有设置密码，则写作 `-u 'root:'`。
 
 ```SQL
 Authorization: Basic <credentials>
@@ -30,8 +42,8 @@ Authorization: Basic <credentials>
 
 | Field                    | Description                                                  |
 | ------------------------ | :----------------------------------------------------------- |
-| query                    | 要查询的 SQL，string 格式。当前支持 SELECT、SHOW、EXPLAIN、KILL。一次 HTTP 请求只允许执行一条 SQL。 |
-| sessionVariables（可选）  | 指定 session 变量，JSON 格式。默认为空。设置的 session 变量在同一连接中始终有效，连接断开后 session 变量失效。 |
+| query                    | SQL 语句，string 格式。当前支持 SELECT、SHOW、EXPLAIN、KILL 语句。一次 HTTP 请求只允许执行一条 SQL。 |
+| sessionVariables（可选）  | 指定的 session 变量，JSON 格式。可选，默认为空。设置的 session 变量在同一连接中始终有效，连接断开后 session 变量失效。 |
 
 ## 响应报文
 
@@ -44,7 +56,7 @@ Authorization: Basic <credentials>
 
 ### Response header
 
-content-type 表示 response body 的格式。这里使用 Newline delimited JSON 格式，即 response body 由若干 json object 组成，json object 之间以 `\n` 隔开。
+content-type 表示 response body 的格式。这里使用 Newline delimited JSON 格式，即 response body 由若干 JSON object 组成，JSON object 之间以 `\n` 隔开。
 
 |                      | Description                                                  |
 | -------------------- | :----------------------------------------------------------- |
@@ -70,7 +82,7 @@ content-type 表示 response body 的格式。这里使用 Newline delimited JSO
 
 #### 执行成功
 
-对于 SELECT 命令：每行是一个 JSON object，JSON object 之间以换行符 `\n` 隔开，从而便于客户端解析。共存在三种 JSON object。
+对于 SELECT 命令，每行是一个 JSON object，JSON object 之间以换行符 `\n` 隔开，从而便于客户端解析。会返回三种 JSON object。
 
 | Object       | Description                                                  |
 | ------------ | :----------------------------------------------------------- |
