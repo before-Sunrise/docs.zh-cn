@@ -30,7 +30,7 @@ Authorization: Basic <credentials>
 
 | Field                    | Description                                                  |
 | ------------------------ | :----------------------------------------------------------- |
-| query                    | 待执行的 SQL，string 格式。当前支持 SELECT、SHOW、EXPLAIN、KILL。一次 HTTP 请求只允许执行一条 SQL。 |
+| query                    | 要查询的 SQL，string 格式。当前支持 SELECT、SHOW、EXPLAIN、KILL。一次 HTTP 请求只允许执行一条 SQL。 |
 | sessionVariables（可选）  | 指定 session 变量，JSON 格式。默认为空。设置的 session 变量在同一连接中始终有效，连接断开后 session 变量失效。 |
 
 ## 响应报文
