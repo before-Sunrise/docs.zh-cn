@@ -33,7 +33,7 @@ curl -X POST 'http://<fe_ip>:<fe_http_port>/api/v1/catalogs/<catalog_name>/datab
 
 ### Request header
 
-使用 Basic authentication 进行认证，即 `credentials` 里填写用户名和密码 (`-u '<username>:<password>'`)。注意如果账号没有设置密码，只需传入 `<username>:`，密码留空。比如如果 root 账号没有设置密码，则写作 `-u root:`。
+使用 Basic authentication 进行认证，即 `credentials` 里填写用户名和密码 (`-u '<username>:<password>'`)。注意如果账号没有设置密码，只需传入 `<username>:`，密码留空。比如如果 root 账号没有设置密码，则写作 `-u 'root:'`。
 
 ```SQL
 Authorization: Basic <credentials>
