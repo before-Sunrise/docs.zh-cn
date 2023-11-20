@@ -14,6 +14,12 @@ curl -X POST 'http://<fe_ip>:<fe_http_port>/api/v1/catalogs/<catalog_name>/datab
 
 ## 请求报文
 
+### 请求行
+
+```sql
+POST 'http://<fe_ip>:<fe_http_port>/api/v1/catalogs/<catalog_name>/databases/<database_name>/sql'
+```
+
 - 指定 catalog, 跨 database 查询。
 
    ```SQL
@@ -30,6 +36,7 @@ curl -X POST 'http://<fe_ip>:<fe_http_port>/api/v1/catalogs/<catalog_name>/datab
 | ------------------------ | :----------------------------------------------------------- |
 |  catalog_name            | 数据目录名称，当前仅支持 StarRocks 内表查询，即 `<catalog_name>` 仅支持为 `default_catalog`。|
 |  database_name           | 数据库名称。SQL 语句中出现的表前面需要加上 database 名，比如 `database_name.table_name`。 |
+
 
 ### Request header
 
