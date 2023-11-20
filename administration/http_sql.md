@@ -28,12 +28,12 @@ curl -X POST 'http://<fe_ip>:<fe_http_port>/api/v1/catalogs/<catalog_name>/datab
 
 | Field                    | Description                                                  |
 | ------------------------ | :----------------------------------------------------------- |
-|  catalog_name            | 数据目录名称， 当前仅支持 StarRocks 内表查询，即 `<catalog_name>` 仅支持为 `default_catalog`。|
-|  database_name           | 数据库名称。SQL 语句中出现的表前面需要加上 database 名。 |
+|  catalog_name            | 数据目录名称，当前仅支持 StarRocks 内表查询，即 `<catalog_name>` 仅支持为 `default_catalog`。|
+|  database_name           | 数据库名称。SQL 语句中出现的表前面需要加上 database 名，比如 `database_name.table_name`。 |
 
 ### Request header
 
-使用 Basic authentication 进行认证，即 `credentials` 里填写用户名和密码 (`-u '<username>:<password>'`)。注意如果账号没有设置密码，只需要传入 `<username>:`，密码留空。比如如果 root 账号没有设置密码，则写作 `-u 'root:'`。
+使用 Basic authentication 进行认证，即 `credentials` 里填写用户名和密码 (`-u '<username>:<password>'`)。注意如果账号没有设置密码，只需传入 `<username>:`，密码留空。比如如果 root 账号没有设置密码，则写作 `-u root:`。
 
 ```SQL
 Authorization: Basic <credentials>
@@ -87,14 +87,14 @@ content-type 表示 response body 的格式。这里使用 Newline delimited JSO
 
 #### 执行成功
 
-对于 SELECT 命令，每行是一个 JSON object，JSON object 之间以换行符 `\n` 隔开，从而便于客户端解析。会返回三种 JSON object。
+对于 SELECT 命令，每行是一个 JSON object，JSON object 之间以换行符 `\n` 隔开，从而便于客户端解析。会返回以下 JSON object。
 
 | Object       | Description                                                  |
 | ------------ | :----------------------------------------------------------- |
-| connectionId | 该连接对应的 ID，可通过 KILL <connectionId> 来取消某个执行时间过长的 query。 |
-| meta         | 用来描述每个列。key 为 meta, value 为一个 JSON array。array 中的每个 object 表示一个 column。 |
-| data         | 代表一行数据。key 为 data, value 为一个 JSON  array，array 中包含一条数据。 |
-| statistics   | 本次执行结果的统计信息。                                       |
+| `connectionId` | 该连接对应的 ID，可通过 KILL `<connectionId>` 来取消某个执行时间过长的 query。 |
+| `meta`        | 用来描述每个列。key 为 meta, value 为一个 JSON array。array 中的每个 object 表示一个 column。 |
+| `data`         | 代表一行数据。key 为 data, value 为一个 JSON  array，array 中包含一条数据。 |
+| `statistics`   | 本次执行结果的统计信息。                                       |
 
 样例：这里换行以 `\n` 表示。发送时 StarRocks 使用 HTTP chunked 方式传输数据，FE 每获取一批数据，就将该批数据流式转发给客户端。客户端可以按行解析 StarRocks 发送的数据，而不需要缓存现有结果直到所有数据发送完毕再进行解析。这可以降低客户端的内存消耗。
 
@@ -124,7 +124,7 @@ content-type 表示 response body 的格式。这里使用 Newline delimited JSO
 
 想要取消一个耗时过长的查询时，可以直接断开连接。当检测到连接已断开，StarRocks 会自动取消该查询。
 
-此外，也可以通过发送 KILL connectionId 的方式取消该查询。
+此外，也可以通过发送 KILL `connectionId` 的方式取消该查询。
 
 ```shell
 curl -X POST 'http://127.0.0.1:8030/api/v1/catalogs/default_catalog/databases/test/sql' -u 'root:' -d '{"query": "kill 17;"}' --header "Content-Type: application/json"
