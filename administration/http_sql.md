@@ -73,7 +73,7 @@ Authorization: Basic <credentials>
 
 - HTTP 请求成功，且在发送数据给客户端之前服务器未出现异常，返回 200。
 - HTTP 请求错误，返回 4xx，表示客户端出错。
-- HTTP 请求成功，但是在发送数据给客户端之前出现异常，返回 500 Internal Server Error。
+- HTTP 请求成功，但是在发送数据给客户端之前出现异常，返回 `500 Internal Server Error`。
 - HTTP 请求成功，但是 FE 当前无法提供服务，返回 503。
 
 ### Response header
@@ -116,7 +116,7 @@ content-type 表示 response body 的格式。这里使用 Newline delimited JSO
 | `statistics`   | 本次执行结果的统计信息。                                       |
 
 - 对于 SHOW，会返回 `meta`，`data`，`statistics`。
-- 对于 EXPLAIN，会返回 `explain` 对象，展示这条查询详细的执行计划。
+- 对于 EXPLAIN，会返回一个 `explain` 对象，展示这条查询详细的执行计划。
 
 样例：这里换行以 `\n` 表示。发送时 StarRocks 使用 HTTP chunked 方式传输数据，FE 每获取一批数据，就将该批数据流式转发给客户端。客户端可以按行解析 StarRocks 发送的数据，而不需要缓存现有结果直到所有数据发送完毕再进行解析。这可以降低客户端的内存消耗。
 
